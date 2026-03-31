@@ -1,9 +1,34 @@
-💎 Sentinel: Multimodal AI Portfolio Intelligence EngineSentinel is an event-driven, multimodal AI pipeline that transforms raw market noise into institutional-grade equity research. Designed for the Indian stock market (NSE/BSE), it processes forwarded Telegram text and news screenshots (broadcast tickers) to identify direct and indirect impacts on a specific ₹7.5L investment portfolio.🚀 The Problem: Signal vs. NoiseIn the 2026 data-heavy market, investors are flooded with "noise." For a professional Data Engineer, a generic news feed is a "dirty" data source.The Challenge: Differentiating between career-related news (e.g., Amazon AWS updates) and actual portfolio risks (e.g., HDFC Bank regulatory shifts).The Solution: An Impact-Aware Logic Gate that uses sectoral mapping to prioritize capital-at-risk notifications over professional interest.🧠 System ArchitectureSentinel follows a classic ETL (Extract, Transform, Load) pattern optimized for LLM orchestration:Code snippetgraph LR
-    A[📩 Telegram Webhook] --> B(🛠️ Make.com Orchestrator)
-    B --> C{📸 Multimodal Decoder}
-    C --> D[🤖 Gemini 3 Flash API]
-    D --> E[🔀 Sectoral Mapping Table]
+# <p align="center">💎 Sentinel: Multimodal Portfolio Intelligence</p>
+
+<p align="center">
+  <b>An Event-Driven AI Pipeline for Indian Equity Markets</b><br>
+  <i>Filtering Market Noise • Analyzing Visual Data • Automating Research</i>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Model-Gemini%203%20Flash-blue?style=for-the-badge&logo=google" />
+  <img src="https://img.shields.io/badge/Orchestrator-Make.com-purple?style=for-the-badge&logo=make" />
+  <img src="https://img.shields.io/badge/Interface-Telegram-0088cc?style=for-the-badge&logo=telegram" />
+</p>
+
+---
+
+### 📖 Overview
+**Sentinel** is a high-performance "Signal-to-Noise" engine built for the modern Indian investor. It ingests unstructured data from Telegram forwards, news tickers, and chart screenshots, then uses **Sectoral Heuristics** to determine if the news actually impacts a specific ₹7.5L portfolio.
+
+> **The Problem:** Retail investors are flooded with "Information Overload." As a Data Engineer, I wanted a bot that ignores my professional/career news (e.g., Amazon AWS updates) and only alerts me when my actual capital (e.g., HAL, ONGC, HDFC Bank) is at risk.
+
+---
+
+### 🏗️ System Architecture
+The pipeline is designed as a linear, event-driven flow:
+
+```mermaid
+graph TD
+    A[📩 Telegram Webhook] --> B(🛠️ Data Ingestion & Binary Extract)
+    B --> C{📸 Multimodal Analysis}
+    C --> D[🤖 Gemini 3 Flash]
+    D --> E[🔀 Sectoral Mapping Logic]
     E --> F{🎯 High-Conviction Filter}
-    F -- SKIP --> G[🌑 Null Output]
-    F -- SIGNAL --> H[📲 Telegram Dispatch]
-✨ Key Features📸 Multimodal OCR & Vision: High-sensitivity extraction of stock tickers from green-on-black broadcast banners (CNBC-TV18, MoneyControl) using Gemini 3 Flash.🏗️ Sectoral Knowledge Graph: A heuristic mapping layer that links macro-economic news to micro-impacts:Defense: HAL, L&TEnergy: ONGC, Tata Power, Waaree RenewablesBanking: HDFC Bank, PFC🛡️ Professional Context Shield: Explicit "Noise Filtering" logic to ignore global tech news or career-related updates that don't impact Indian equity valuations.⚡ Production Resilience: Implemented advanced error handling for API 429 Quotas and 40s Timeouts to ensure 99.9% pipeline uptime during peak market hours.🛠️ Tech Stack & ParametersComponentTechnologyLogic / ConfigOrchestratorMake.comEvent-driven webhooks & binary data serializationAI ModelGemini 3 Flashtemperature: 0.1 for rigid rule adherenceVisionGemini MultimodalBase64-encoded image processing for chart/text analysisGroundingGoogle SearchReal-time verification against NSE/BSE regulatory filingsTimeout120,000msOptimized for high-res media OCR latency
+    F -- SKIP --> G[🌑 Silent Drop]
+    F -- ALERT --> H[📲 Telegram Dispatch]
